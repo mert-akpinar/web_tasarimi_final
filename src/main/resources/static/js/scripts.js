@@ -10,7 +10,6 @@ $(document).ready(function () {
         }
     })
 })
-
 $(document).ready(function () {
     $("#loginForm").submit(function (event) {
         event.preventDefault()
@@ -20,9 +19,7 @@ $(document).ready(function () {
             ajax_login_post(email, password);
         }
     })
-
 })
-
 let ajax_login_post = (emailVal, passwordVal) => {
     const data = {
         email: emailVal,
@@ -48,15 +45,12 @@ let ajax_login_post = (emailVal, passwordVal) => {
         }
     })
 }
-
-
 let ajax_register_post = (nameVal, emailVal, passwordVal) => {
     const UserDto = {
         firstName: nameVal,
         email: emailVal,
         password: passwordVal
     }
-
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -78,27 +72,23 @@ let ajax_register_post = (nameVal, emailVal, passwordVal) => {
         }
     });
 }
-
 let validateRegisterForm = () => {
     const $form = $("#registerForm");
     if ($form.length) {
         $form.validate({
-            errorClass: "error", // Adding the error class to the error message element
-            errorElement: "div", // Using div element to wrap the error message
+            errorClass: "error",
+            errorElement: "div",
             errorPlacement: function (error, element) {
-                // Insert error message below each invalid input field
                 error.insertAfter(element);
             },
             highlight: function (element) {
-                // add "is-invalid" class to the input field's parent div
-                $(element).closest(".form-control").addClass("is-invalid");
+                 $(element).closest(".form-control").addClass("is-invalid");
             },
             unhighlight: function (element) {
-                // Remove "is-invalid" class from the input field's parent div
                 $(element).closest(".form-control").removeClass("is-invalid");
             },
             rules: {
-                name: {
+        D        name: {
                     required: true
                 },
                 surname: {
@@ -134,69 +124,7 @@ let validateRegisterForm = () => {
                 }
             },
         });
-        return $form.valid(); // true if form is validated
+        return $form.valid();
     }
     return false;
-}
-
-let validateLoginForm = () => {
-    const $form = $("#loginForm");
-    if ($form.length) {
-        $form.validate({
-            errorClass: "error", // Adding the error class to the error message element
-            errorElement: "div", // Using div element to wrap the error message
-            errorPlacement: function (error, element) {
-                // Insert error message below the input field
-                error.insertAfter(element);
-            },
-            highlight: function (element) {
-                // Adding "is-invalid" class to each invalid input field's parent div
-                $(element).closest(".form-control").addClass("is-invalid");
-            },
-            unhighlight: function (element) {
-                // Remove "is-invalid" class from each correct input field's parent div
-                $(element).closest(".form-control").removeClass("is-invalid");
-            },
-            rules: {
-                email: {
-                    required: true
-                },
-                password: {
-                    required: true
-                }
-            },
-            messages: {
-                email: {
-                    required: "Email can't be empty"
-                },
-                password: {
-                    required: "Password can't be empty"
-                }
-            }
-        })
-        return $form.valid(); // true if form is validated
-    }
-    return false;
-}
-
-let customPopoutAlert = (message, status) => {
-    // Custom Alert Using Bootstrap
-    let alertDiv = $("#alert")
-    if (status === "success") {
-        alertDiv.addClass("alert alert-success")
-        alertDiv.text(message)
-        setTimeout(function () {
-            alertDiv.fadeOut("slow");
-            window.location.href = "/login" // redirect to the login page if registered successfully
-        }, 10000);
-    } else {
-        alertDiv.removeClass("fade out").addClass("alert alert-danger").show();
-        alertDiv.text(message);
-
-        setTimeout(function () {
-            alertDiv.fadeOut("slow", function () {
-                alertDiv.empty().removeClass(); // Clear the message and remove classes after fading out
-            });
-        }, 10000);
-    }
 }
