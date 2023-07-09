@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kullanıcılar</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    </style>
+</head>
+<body>
+<h1 class="get_all text-center">Tüm Kullanıcılar</h1>
+<table class="table table-bordered" id="myTable">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">İsim</th>
+        <th scope="col">Mail</th>
+        <th scope="col">Şifre</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.password}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/users",
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    let row = $("<tr>");
+                    row.append($("<td>").text(item.id));
+                    row.append($("<td>")).text(item.firstName)
+                    row.append($("<td>").text(item.email));
+                    row.append($("<td>").text(item.password));
+                    $("#myTable tbody").append(row);
+                });
+            }
+        })
+    })
+</script>
+</html>

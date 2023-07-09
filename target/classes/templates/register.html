@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="register-container">
+    <div id="alert"></div>
+    <div class="register-form">
+        <h2 class="text-center mb-3">REGISTER</h2>
+        <div class="text-center mb-1 reg_btns">
+            <ul class="mt-3">
+                <li><a href="#"><img src="img/facebook.jfif" alt="Facebook Logo"></a></li>
+                <li><a href="#"><img src="img/google.png" alt="Google Logo"></a></li>
+                <li><a href="#"><img src="img/yandex.jfif" alt="Yandex Logo"></a></li>
+            </ul>
+        </div>
+        <h6 class="text-center">or use your email address:</h6>
+        <form id="registerForm">
+            <div class="form-floating mt-3 mb-3">
+                <input name="name" type="text" class="form-control" id="name" required>
+                <label for="name">Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input name="email" type="email" class="form-control" id="email" required>
+                <label for="email">Mail</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input name="password" type="password" class="form-control" id="password" required>
+                <label for="password">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input name="password2" type="password" class="form-control" id="password2" required>
+                <label for="password2">Confirm Password</label>
+            </div>
+            <button type="submit" class="check w-100">Create Account</button>
+            <p class="text-center mt-3">Already have an account? <a> Sign in</a></p>
+        </form>
+    </div>
+</div>
+<script src="/js/scripts.js"></script>
+</body>
+</html>
